@@ -45,7 +45,7 @@ Include the code where needed:
 
 ## Testing
 
-Tests use `[prove](https://github.com/fukamachi/prove)` and live in the `/t/`
+Tests use [prove](https://github.com/fukamachi/prove) and live in the `/t/`
 directory. With SBCL installed they can be executed by running `make test`.
 
 ## Function Documentation
