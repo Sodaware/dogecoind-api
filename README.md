@@ -24,7 +24,7 @@ Include the code where needed:
 
 ## Quick usage example
 
-### Getting the account balance
+### Getting the balance of the whole wallet
 
 ```lisp
 (let* ((client (dogecoind-api:make-client))
@@ -33,7 +33,7 @@ Include the code where needed:
 => "Server balance: Ð 12345.6"
 ```
 
-### Connecting to the testnext
+### Connecting to the test network
 
 ```lisp
 (let* ((client (dogecoind-api:make-client :port 44555))
