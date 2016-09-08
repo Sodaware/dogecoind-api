@@ -11,7 +11,7 @@
 
 (defvar *basic-client* (make-client))
 
-(plan 6)
+(plan 7)
 
 
 ;; ----------------------------------------
@@ -55,6 +55,12 @@
         "Can add a multisig address and assign to an account"))
   (signals-deprecation "account"
                        (dogecoind-api:add-multisig-address *basic-client* (list "key-1") "account-value")))
+
+(subtest ":backup-wallet"
+  (with-mocked-payload "backupwallet"
+    (:payload ("~/destination.wallet")) 
+    (ok (dogecoind-api:backup-wallet *basic-client* "~/destination.wallet")
+        "Copies wallet when a filename is provided")))
 
 (subtest ":get-server-balance"
   (with-mocked-payload "getbalance"

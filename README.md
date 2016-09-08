@@ -77,6 +77,18 @@ If *account* is specified, the address with be assigned to that account.
 => "DTnt7VZqR5ofHhAxZuDy4m3PhSjKFXpw3e"
 ```
 
+#### dogecoind-api:backup-wallet *client* *destination*
+
+Safely copy wallet.dat to *destination*.
+
+*destination* can either be a directory or a path with filename.
+
+```lisp
+(dogecoind-api:backup-wallet *client* "/home/doger/my-new-wallet.wallet")
+=> "/home/doger/my-new-wallet.wallet"
+```
+
+
 #### dogecoind-api:get-account-balance *client* *account* *minimum-confirmations* *watch-only-p*
 
 Get the available balance for *account*.

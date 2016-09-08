@@ -59,6 +59,13 @@ If ACCOUNT is specified, the address will be assigned to the account."
              (length keys) keys
              :optional account))
 
+(defmethod backup-wallet ((client client) destination)
+  "Safely copy wallet.dat to DESTINATION. 
+
+DESTINATION can either be a directory or a path with filename." 
+  (http-post client "backupwallet" destination)
+  destination)
+
 (defmethod get-server-balance ((client client) &optional (minimum-confirmations 1) (watch-only-p nil))
   "Get the total balance for all accounts on the server."
   (get-account-balance client "*" minimum-confirmations watch-only-p))

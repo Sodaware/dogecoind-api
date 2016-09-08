@@ -14,5 +14,6 @@
 
            ;; RPC Methods
            #:add-multisig-address
+           #:backup-wallet
            #:get-account-balance
            #:get-server-balance))
