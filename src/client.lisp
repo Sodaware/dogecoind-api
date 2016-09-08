@@ -31,19 +31,19 @@
   (and (not (null (client-username client)))
        (not (null (client-password client)))))
 
+(defmethod client-authorization ((client client))
+  (when (authorizedp client)
+    (list (client-username client) (client-password client))))
 
 ;; ----------------------------------------
 ;; -- RPC request macros
 
-(defmacro http-get (client action)
-  "Makes a HTTP GET request to ACTION for CLIENT."
-  `(get-request (client-endpoint ,client) ,action))
-
 (defmacro http-post (client action &rest parameters)
   "Makes a HTTP POST request to ACTION for CLIENT with PARAMETERS as the payload."
   `(post-request (client-endpoint ,client)
-                 ,action
-                 (create-parameter-list ,@parameters)))
+                 ,action 
+                 (create-parameter-list ,@parameters)
+                 (client-authorization ,client)))
 
 
 ;; ----------------------------------------

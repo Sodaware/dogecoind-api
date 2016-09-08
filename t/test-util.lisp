@@ -18,28 +18,21 @@
       (format nil "t/fixtures/~a.json" override)
       (format nil "t/fixtures/~a.json" action)))
 
-(defmacro with-mocked-request (action &body body)
-  (let ((expected-uri (format nil "http://127.0.0.1:8334/~a/" action))
-        (mocked-contents (read-file-into-string (format nil "t/fixtures/~a.json" action)))
-        (payload-content (dogecoind-api::create-payload action)))
-    `(with-mocks ()
-       (answer (drakma:http-request uri :method :get :content payload-content)
-               (progn
-                 (is uri ,expected-uri "Generates correct endpoint")
-                 ,mocked-contents))
-       (progn ,@body))))
-
-(defmacro with-mocked-payload (action (&key (payload nil) (fixture nil) (debug nil)) &body body)
+(defmacro with-mocked-payload (action (&key (payload nil) (fixture nil) (debug nil) (authorization nil)) &body body)
   (when debug
     (ok (probe-file (fixture-file-name action fixture)) "Fixture file exists"))
-  (let ((expected-uri (format nil "http://127.0.0.1:8334/~a/" action))
+  (let ((expected-uri "http://127.0.0.1:8334/")
         (response (read-file-into-string (fixture-file-name action fixture)))
         (payload-content (dogecoind-api::create-payload action payload)))    
     (when debug
       (diag (format nil "Expected endpoint: ~a" expected-uri))
       (diag (format nil "Generated payload: ~a" payload-content)))
     `(with-mocks ()
-       (answer (drakma:http-request uri :method :post :content ,payload-content)
+       (answer (drakma:http-request uri
+                                    :content-type "application/json"
+                                    :method :post
+                                    :content ,payload-content
+                                    :basic-authorization ,authorization)
                (progn
                  (is uri ,expected-uri "Generates correct endpoint")
                  ,response))

@@ -6,11 +6,14 @@
 ;; ----------------------------------------
 ;; -- Making requests
 
-(defun request (endpoint-template action &optional parameters (method :get))
-  "Make a request to the RPC server. Raises `server-error` if the server returns an error value."
-  (let* ((endpoint (format nil endpoint-template action))
-         (payload (create-payload action parameters))
-         (response (drakma:http-request endpoint :method method :content payload))) 
+(defun request (endpoint action &optional parameters authorization (method :get))
+  "Make a request to the RPC server. Raises `server-error` if the server returns an error value." 
+  (let* ((payload (create-payload action parameters))
+         (response (drakma:http-request endpoint
+                                        :content-type "application/json"
+                                        :method method
+                                        :content payload
+                                        :basic-authorization authorization)))
     (let ((decoded-response (json:decode-json-from-string response)))
       (when (and (assoc-cdr :error decoded-response)
                  (listp (assoc-cdr :error decoded-response)))
@@ -21,9 +24,9 @@
           (assoc-cdr :result decoded-response)
           decoded-response))))
 
-(defun post-request (endpoint action &optional parameters)
+(defun post-request (endpoint action &optional parameters authorization)
   "Make a POST request to ENDPOINT with ACTION and optional PARAMETERS"
-  (request endpoint action parameters :post))
+  (request endpoint action parameters authorization :post))
 
 (defun get-request (endpoint action &optional parameters)
   "Make a GET request to ENDPOINT with ACTION and optional PARAMETERS"
@@ -35,15 +38,10 @@
 
 (defmethod client-endpoint ((client client))
   "Create the base address endpoint for an RPC call."
-  (format nil "~a://~a:~a/~a/"
+  (format nil "~a://~a:~a/"
           (client-protocol client)
           (client-host client)
-          (client-port client)
-          "~(~a~)"))
-
-(defmethod create-endpoint ((client client) method)
-  "Create the address endpoint for a simple call to METHOD."
-  (format nil (client-endpoint client) method))
+          (client-port client)))
 
 (defun create-payload (method &optional parameters)
   "Create a JSON-formatted RPC payload for METHOD with PARAMETERS."

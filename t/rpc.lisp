@@ -8,53 +8,28 @@
 
 (defvar *default-client* (make-client))
 
-(plan 4)
+(plan 3)
 
 (subtest "::client-endpoint"
 
-  (is "http://127.0.0.1:8334/~(~a~)/"
+  (is "http://127.0.0.1:8334/"
       (dogecoind-api::client-endpoint *default-client*)
       "Creates correct endpoint with default client")
 
   (let ((client (dogecoind-api:make-client :host "localhost")))
-    (is "http://localhost:8334/~(~a~)/"
+    (is "http://localhost:8334/"
         (dogecoind-api::client-endpoint client)
         "Includes customized :host in endpoint"))
 
   (let ((client (dogecoind-api:make-client :port 1234)))
-    (is "http://127.0.0.1:1234/~(~a~)/"
+    (is "http://127.0.0.1:1234/"
         (dogecoind-api::client-endpoint client)
-        "Includes customized :post in endpoint"))
+        "Includes customized :port in endpoint"))
 
   (let ((client (dogecoind-api:make-client :protocol "https")))
-    (is "https://127.0.0.1:8334/~(~a~)/"
+    (is "https://127.0.0.1:8334/"
         (dogecoind-api::client-endpoint client)
         "Includes customized :protocol in endpoint")))
-
-
-(subtest "::create-endpoint"
-
-  (is "http://127.0.0.1:8334/getinfo/"
-      (dogecoind-api::create-endpoint *default-client* "getinfo")
-      "Can create an endpoint with default client")
-  (is "http://127.0.0.1:8334/getinfo/"
-      (dogecoind-api::create-endpoint *default-client* "GetInFo")
-      "Converts actions to lowercase")
-
-  (let ((client (dogecoind-api:make-client :host "localhost")))
-    (is "http://localhost:8334/getinfo/"
-        (dogecoind-api::create-endpoint client "getinfo")
-        "Can customize host"))
-
-  (let ((client (dogecoind-api:make-client :port 1234)))
-    (is "http://127.0.0.1:1234/getinfo/"
-        (dogecoind-api::create-endpoint client "getinfo")
-        "Can customize port"))
-
-  (let ((client (dogecoind-api:make-client :protocol "https")))
-    (is "https://127.0.0.1:8334/getinfo/"
-        (dogecoind-api::create-endpoint client "getinfo")
-        "Can customize protocol")))
 
 (subtest "::create-payload"
 
