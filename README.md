@@ -70,26 +70,34 @@ spend and return the newly-created dogecoin address.
 
 Each *key* in *keys* is a bitcoin address or hex-encoded public key. 
 
-If *account* is specified, the address with be assigned to that account. Note
-that this parameter is now deprecated..
+If *account* is specified, the address with be assigned to that account.
 
 ```lisp
 (dogecoind-api:add-multisig-address *client* (list "address1" "address2"))
 => "DTnt7VZqR5ofHhAxZuDy4m3PhSjKFXpw3e"
 ```
 
-#### dogecoind-api:get-account-balance *client* *account*
+#### dogecoind-api:get-account-balance *client* *account* *minimum-confirmations* *watch-only-p*
 
 Get the available balance for *account*.
+
+*minimum-confirmations* is the minimum number of confirmations an
+externally-generated transaction must have before it is counted towards the
+balance.
+
+If *watch-only-p* is true, watch-only addresses will be included in details and
+calculations as if they were regular addresses belonging to the wallet.
 
 ```lisp
 (dogecoind-api:get-account-balance *client* "DTnt7VZqR5ofHhAxZuDy4m3PhSjKFXpw3e")
 => 12345.67890
 ```
 
-#### dogecoind-api:get-server-balance *client*
+#### dogecoind-api:get-server-balance *client* *minimum-confirmations* *watch-only-p*
 
 Get the total balance of all accounts on the server.
+
+Works the the same as `dogecoind-api:get-account-balance`.
 
 ```lisp
 (dogecoind-api:get-server-balance *client*)
