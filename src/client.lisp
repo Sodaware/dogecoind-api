@@ -32,8 +32,10 @@
        (not (null (client-password client)))))
 
 (defmethod client-authorization ((client client))
+  "Get client username/password pair to use with Drakma basic-authorization."
   (when (authorizedp client)
     (list (client-username client) (client-password client))))
+
 
 ;; ----------------------------------------
 ;; -- RPC request macros
