@@ -11,7 +11,7 @@
 
 (defvar *basic-client* (make-client))
 
-(plan 7)
+(plan 8)
 
 
 ;; ----------------------------------------
@@ -61,6 +61,16 @@
     (:payload ("~/destination.wallet")) 
     (ok (dogecoind-api:backup-wallet *basic-client* "~/destination.wallet")
         "Copies wallet when a filename is provided")))
+
+(subtest ":create-multisig-address"
+  (with-mocked-payload "createmultisig"
+    (:payload (2 ("address1" "address2")))
+    (multiple-value-bind (address redeem-script)
+        (dogecoind-api:create-multisig-address *basic-client* (list "address1" "address2"))
+      (is address "new-address-here"
+          "Returns the added address")
+      (is redeem-script "hex-encoded-string-here"
+          "Returns the redeem script"))))
 
 (subtest ":get-server-balance"
   (with-mocked-payload "getbalance"

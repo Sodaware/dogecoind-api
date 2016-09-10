@@ -1,0 +1,7 @@
+{
+    "error" : "",
+    "result": {
+        "address": "new-address-here",
+        "redeemScript": "hex-encoded-string-here"
+    }
+}

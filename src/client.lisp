@@ -66,6 +66,12 @@ DESTINATION can either be a directory or a path with filename."
   (http-post client "backupwallet" destination)
   destination)
 
+(defmethod create-multisig-address ((client client) keys)
+  "Create a multisignature address to the wallet that requires KEYS to release and return."  
+  (let ((response (http-post client "createmultisig" (length keys) keys)))
+    (values (cdr (assoc :address response))
+            (cdr (assoc :redeem-script response)))))
+
 (defmethod get-server-balance ((client client) &optional (minimum-confirmations 1) (watch-only-p nil))
   "Get the total balance for all accounts on the server."
   (get-account-balance client "*" minimum-confirmations watch-only-p))
