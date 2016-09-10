@@ -23,19 +23,33 @@
     `(when (and ,parameter *deprecation-warnings-enabled-p*) 
        (deprecated-parameter-warning ,parameter-name))))
 
+(defmacro method-is-deprecated (name)
+  "Raise a warning that the method is deprecated."
+  (let ((method-name (format nil "~a" name)))
+    `(when (and ,name *deprecation-warnings-enabled-p*) 
+       (deprecated-method-warning ,method-name))))
+
 
 ;; ----------------------------------------
 ;; -- Deprecation warnings
-
 
 (defun deprecated-parameter-warning (name)
   "Signal a deprecation warning for parameter NAME."
   (warn 'deprecated-parameter
         :text (format nil "Parameter `~a` is deprecated" name)))
 
+(defun deprecated-method-warning (name)
+  "Signal a deprecation warning for method NAME."
+  (warn 'deprecated-method
+        :text (format nil "Method `~a` is deprecated" name)))
+
 (define-condition deprecated-parameter (warning)
   ()
   (:documentation "A warning signalled when a function parameter has been deprecated"))
+
+(define-condition deprecated-method (warning)
+  ()
+  (:documentation "A warning signalled when a method has been deprecated"))
 
 
 ;; ----------------------------------------

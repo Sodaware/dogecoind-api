@@ -5,6 +5,10 @@
   (:export #:*deprecation-warnings-enabled-p*
            #:enable-deprecation-warnings
            #:disable-deprecation-warnings
+
+           ;; Conditions
+           #:deprecated-method
+           #:deprecated-parameter
            
            ;; Client object
            #:client
