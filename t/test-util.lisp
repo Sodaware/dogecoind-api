@@ -33,9 +33,7 @@
                                     :method :post
                                     :content ,payload-content
                                     :basic-authorization ,authorization)
-               (progn
-                 (is uri ,expected-uri "Generates correct endpoint")
-                 ,response))
+               ,response)
        (progn ,@body))))
 
 (defmacro signals-deprecation (name &body body)
