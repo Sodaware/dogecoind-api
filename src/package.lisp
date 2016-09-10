@@ -13,8 +13,8 @@
            #:authorizedp
 
            ;; RPC Methods
+           #:account-balance
            #:add-multisig-address
            #:backup-wallet
            #:create-multisig-address
-           #:get-account-balance
-           #:get-server-balance))
+           #:server-balance))

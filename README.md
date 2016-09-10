@@ -57,8 +57,8 @@ The API functions are mapped as follows:
 API Method           | Local Method
 ---------------------|--------------------------------------
 addmultisigaddress   | dogecoind-api:add-multisig-address
-getbalance           | dogecoind-api:get-account-balance
-                     | dogecoind-api:get-server-balance
+getbalance           | dogecoind-api:account-balance
+                     | dogecoind-api:server-balance
 
 Some API methods are wrapped with several helper methods where appropriate.
 
@@ -89,7 +89,7 @@ Safely copy wallet.dat to *destination*.
 ```
 
 
-#### dogecoind-api:get-account-balance *client* *account* *minimum-confirmations* *watch-only-p*
+#### dogecoind-api:account-balance *client* *account* *minimum-confirmations* *watch-only-p*
 
 Get the available balance for *account*.
 
@@ -101,18 +101,18 @@ If *watch-only-p* is true, watch-only addresses will be included in details and
 calculations as if they were regular addresses belonging to the wallet.
 
 ```lisp
-(dogecoind-api:get-account-balance *client* "DTnt7VZqR5ofHhAxZuDy4m3PhSjKFXpw3e")
+(dogecoind-api:account-balance *client* "DTnt7VZqR5ofHhAxZuDy4m3PhSjKFXpw3e")
 => 12345.67890
 ```
 
-#### dogecoind-api:get-server-balance *client* *minimum-confirmations* *watch-only-p*
+#### dogecoind-api:server-balance *client* *minimum-confirmations* *watch-only-p*
 
 Get the total balance of all accounts on the server.
 
-Works the the same as `dogecoind-api:get-account-balance`.
+Works the the same as `dogecoind-api:account-balance`.
 
 ```lisp
-(dogecoind-api:get-server-balance *client*)
+(dogecoind-api:server-balance *client*)
 => 12345.67890
 ```
 

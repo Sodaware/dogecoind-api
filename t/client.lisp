@@ -72,16 +72,16 @@
       (is redeem-script "hex-encoded-string-here"
           "Returns the redeem script"))))
 
-(subtest ":get-server-balance"
+(subtest ":server-balance"
   (with-mocked-payload "getbalance"
     (:payload ("*" 1))
-    (is (dogecoind-api:get-server-balance *basic-client*) 123.123465
+    (is (dogecoind-api:server-balance *basic-client*) 123.123465
         "Gets the balance for the server")))
 
-(subtest ":get-account-balance"
+(subtest ":account-balance"
   (with-mocked-payload "getbalance"
     (:payload ("testaccount" 1) :fixture "getbalance-testaccount")
-    (is (dogecoind-api:get-account-balance *basic-client* "testaccount") 321.12347
+    (is (dogecoind-api:account-balance *basic-client* "testaccount") 321.12347
         "Gets the balance for the account")))
 
 (finalize)

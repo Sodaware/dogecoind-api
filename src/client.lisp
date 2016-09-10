@@ -74,11 +74,12 @@ DESTINATION can either be a directory or a path with filename."
     (values (cdr (assoc :address response))
             (cdr (assoc :redeem-script response)))))
 
-(defmethod get-server-balance ((client client) &optional (minimum-confirmations 1) (watch-only-p nil))
+(defmethod server-balance ((client client) &optional (minimum-confirmations 1) (watch-only-p nil))
   "Get the total balance for all accounts on the server."
-  (get-account-balance client "*" minimum-confirmations watch-only-p))
+  (account-balance client "*" minimum-confirmations watch-only-p))
 
-(defmethod get-account-balance ((client client) account-name &optional (minimum-confirmations 1) (watch-only-p nil))
+(defmethod account-balance ((client client) account-name &optional (minimum-confirmations 1) (watch-only-p nil))
   "Get the balance for ACCOUNT-NAME."
   (http-post client "getbalance" account-name
              :optional minimum-confirmations watch-only-p))
+
