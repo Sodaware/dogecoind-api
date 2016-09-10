@@ -17,6 +17,7 @@
            #:authorizedp
 
            ;; RPC Methods
+           #:account-address
            #:account-balance
            #:add-multisig-address
            #:backup-wallet

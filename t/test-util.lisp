@@ -39,6 +39,11 @@
 (defmacro signals-deprecation (name &body body)
   `(let ((dogecoind-api:*deprecation-warnings-enabled-p* t))
      (is-error ,@body
-               'dogecoind-api::deprecated-parameter
+               'dogecoind-api:deprecated-parameter
                (format nil "Signals a deprecation warning when `~a` is passed" ,name))))
 
+(defmacro signals-method-deprecation (name &body body)
+  `(let ((dogecoind-api:*deprecation-warnings-enabled-p* t))
+     (is-error ,@body
+               'dogecoind-api:deprecated-method
+               (format nil "Signals a method deprecation warning for `~a`" ,name))))

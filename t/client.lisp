@@ -11,7 +11,7 @@
 
 (defvar *basic-client* (make-client))
 
-(plan 8)
+(plan 9)
 
 
 ;; ----------------------------------------
@@ -39,6 +39,16 @@
 
 ;; ----------------------------------------
 ;; -- RPC Methods
+
+(subtest ":account-address"
+  (with-mocked-payload "getaccountaddress"
+    (:payload ("account-1"))
+    (is (dogecoind-api:account-address *basic-client* "account-1")
+        "abc123"
+        "Returns the address for an account"))
+  (signals-method-deprecation
+   "account-address"
+   (dogecoind-api:account-address *basic-client* "account-1")))
 
 (subtest ":add-multisig-address"
   (with-mocked-payload "addmultisigaddress"

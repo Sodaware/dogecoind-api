@@ -51,6 +51,12 @@
 ;; ----------------------------------------
 ;; -- RPC methods
 
+(defmethod account-address ((client client) account)
+  "Get the current dogecoin address for receiving payments to ACCOUNT.
+If ACCOUNT doesn't exist it will be created."
+  (method-is-deprecated "account-address")
+  (http-post client "getaccountaddress" account))
+
 (defmethod add-multisig-address ((client client) keys &optional account)
   "Add a multisignature address to the wallet that requires KEYS to release and return the address.
 
