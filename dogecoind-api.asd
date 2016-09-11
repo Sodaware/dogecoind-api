@@ -12,6 +12,7 @@
                :cl-json)
   :pathname "src"
   :components ((:file "package")
+               (:file "error-codes")
                (:file "conditions")
                (:file "client")
                (:file "rpc")
