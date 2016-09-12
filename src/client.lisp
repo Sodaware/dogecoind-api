@@ -68,12 +68,7 @@ If ACCOUNT is specified, the address will be assigned to the account."
              (length keys) keys
              :optional account))
 
-(defmethod backup-wallet ((client client) destination)
-  "Safely copy wallet.dat to DESTINATION. 
 
-DESTINATION can either be a directory or a path with filename." 
-  (http-post client "backupwallet" destination)
-  destination)
 
 (defmethod create-multisig-address ((client client) keys)
   "Create a multisignature address to the wallet that requires KEYS to release and return."  
@@ -90,3 +85,12 @@ DESTINATION can either be a directory or a path with filename."
   (http-post client "getbalance" account-name
              :optional minimum-confirmations watch-only-p))
 
+;; ----------------------------------------
+;; -- Wallet functions
+
+(defmethod backup-wallet ((client client) destination)
+  "Safely copy wallet.dat to DESTINATION. 
+
+DESTINATION can either be a directory or a path with filename." 
+  (http-post client "backupwallet" destination)
+  destination)
