@@ -21,8 +21,12 @@
            #:account-balance
            #:add-multisig-address
            #:backup-wallet
+           #:change-wallet-passphrase
            #:create-multisig-address
+           #:encrypt-wallet
+           #:lock-wallet
            #:server-balance
+           #:unlock-wallet
 
            ;; Error Constants
            #:+rpc-invalid-request+
