@@ -2,6 +2,11 @@
 
 (in-package #:dogecoind-api)
 
+;; ----------------------------------------
+;; -- Configuring Drakma
+
+(push '("application" . "json") drakma:*text-content-types*)
+
 
 ;; ----------------------------------------
 ;; -- Making requests
