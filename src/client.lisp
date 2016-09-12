@@ -24,7 +24,8 @@
 (defmethod authorize ((client client) username password)
   "Authorize the client with USERNAME and PASSWORD."
   (setf (client-username client) username)
-  (setf (client-password client) password))
+  (setf (client-password client) password)
+  t)
 
 (defmethod authorizedp ((client client))
   "Check if the client has had a username and password set."
