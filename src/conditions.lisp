@@ -1,4 +1,4 @@
-;;; client.lisp -- Error conditions and warnings
+;;; conditions.lisp -- Error conditions and warnings
 
 (in-package #:dogecoind-api)
 
