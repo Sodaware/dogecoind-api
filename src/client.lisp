@@ -107,3 +107,6 @@ DESTINATION can either be a directory or a path with filename."
   "Unlock the wallet using PASSPHRASE and keep unlocked for TIMEOUT seconds."
   (http-post client "walletpassphrase" passphrase timeout))
 
+(defmethod change-wallet-passphrase ((client client) old-passphrase new-passphrase)
+  "Change the wallet passphrase from OLD-PASSPHRASE to NEW-PASSPHRASE."
+  (http-post client "walletpassphrasechange" old-passphrase new-passphrase))
