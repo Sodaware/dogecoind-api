@@ -99,3 +99,11 @@ DESTINATION can either be a directory or a path with filename."
   "Encrypt wallet and require PASSPHRASE to unlock it."
   (http-post client "encryptwallet" passphrase))
 
+(defmethod lock-wallet ((client client))
+  "Lock the wallet."
+  (http-post client "walletlock"))
+
+(defmethod unlock-wallet ((client client) passphrase timeout)
+  "Unlock the wallet using PASSPHRASE and keep unlocked for TIMEOUT seconds."
+  (http-post client "walletpassphrase" passphrase timeout))
+
