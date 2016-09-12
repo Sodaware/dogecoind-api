@@ -94,3 +94,8 @@ If ACCOUNT is specified, the address will be assigned to the account."
 DESTINATION can either be a directory or a path with filename." 
   (http-post client "backupwallet" destination)
   destination)
+
+(defmethod encrypt-wallet ((client client) passphrase)
+  "Encrypt wallet and require PASSPHRASE to unlock it."
+  (http-post client "encryptwallet" passphrase))
+
