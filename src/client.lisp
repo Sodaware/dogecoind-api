@@ -86,6 +86,14 @@ If ACCOUNT is specified, the address will be assigned to the account."
              :optional minimum-confirmations watch-only-p))
 
 ;; ----------------------------------------
+;; -- Server functions
+
+(defmethod stop-server ((client client))
+  "Stop the dogecoind server."
+  (http-post client "stop"))
+
+
+;; ----------------------------------------
 ;; -- Wallet functions
 
 (defmethod backup-wallet ((client client) destination)
