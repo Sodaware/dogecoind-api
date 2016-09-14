@@ -96,6 +96,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Get the number of connections to other nodes."
   (http-post client "getconnectioncount"))
 
+(defmethod difficulty ((client client))
+  "Get the proof-of-work difficulty as a multiple of the minimum difficulty."
+  (http-post client "getdifficulty"))
+
 (defmethod stop-server ((client client))
   "Stop the dogecoind server."
   (http-post client "stop"))
