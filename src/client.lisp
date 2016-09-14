@@ -88,6 +88,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
 ;; ----------------------------------------
 ;; -- Server functions
 
+(defmethod block-count ((client client))
+  "Get the number of blocks in the longest block chain."
+  (http-post client "blockcount"))
+
 (defmethod stop-server ((client client))
   "Stop the dogecoind server."
   (http-post client "stop"))
