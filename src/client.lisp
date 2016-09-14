@@ -100,6 +100,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Get the proof-of-work difficulty as a multiple of the minimum difficulty."
   (http-post client "getdifficulty"))
 
+(defmethod peer-info ((client client))
+  "Get data about each connected node."
+  (http-post client "getpeerinfo"))
+
 (defmethod stop-server ((client client))
   "Stop the dogecoind server."
   (http-post client "stop"))
