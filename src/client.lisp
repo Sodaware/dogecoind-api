@@ -68,6 +68,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
              (length keys) keys
              :optional account))
 
+(defmethod validate-address ((client client) dogecoin-address)
+  "Fetch information about DOGECOIN-ADDRESS"
+  (http-post client "validateaddress" dogecoin-address))
+
 
 
 (defmethod create-multisig-address ((client client) keys)
