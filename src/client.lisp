@@ -72,7 +72,15 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Fetch information about DOGECOIN-ADDRESS"
   (http-post client "validateaddress" dogecoin-address))
 
+(defmethod valid-address-p ((client client) dogecoin-address)
+  "Validate DOGECOIN-ADDRESS"
+  (let ((response (validate-address client dogecoin-address)))
+    (not (null (assoc-cdr :isvalid response)))))
 
+(defmethod address-mine-p ((client client) dogecoin-address)
+  "Does this address belong to wallet"
+  (let ((response (validate-address dogecoin-address)))
+    (not (null (assoc-cdr :ismine response)))))
 
 (defmethod create-multisig-address ((client client) keys)
   "Create a multisignature address to the wallet that requires KEYS to release and return."  
