@@ -74,6 +74,12 @@ If ACCOUNT is specified, the address will be assigned to the account."
              (length keys) keys
              :optional account))
 
+(defmethod create-multisig-address ((client client) keys)
+  "Create a multisignature address to the wallet that requires KEYS to release and return."  
+  (let ((response (http-post client "createmultisig" (length keys) keys)))
+    (values (cdr (assoc :address response))
+            (cdr (assoc :redeem-script response)))))
+
 (defmethod validate-address ((client client) dogecoin-address)
   "Fetch information about DOGECOIN-ADDRESS"
   (http-post client "validateaddress" dogecoin-address))
@@ -87,12 +93,6 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Does this address belong to wallet"
   (let ((response (validate-address dogecoin-address)))
     (not (null (assoc-cdr :ismine response)))))
-
-(defmethod create-multisig-address ((client client) keys)
-  "Create a multisignature address to the wallet that requires KEYS to release and return."  
-  (let ((response (http-post client "createmultisig" (length keys) keys)))
-    (values (cdr (assoc :address response))
-            (cdr (assoc :redeem-script response)))))
 
 (defmethod server-balance ((client client) &optional (minimum-confirmations 1) (watch-only-p nil))
   "Get the total balance for all accounts on the server."
