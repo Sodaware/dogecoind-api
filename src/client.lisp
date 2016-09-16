@@ -57,6 +57,11 @@
   (http-post client "listaccounts"))
 
 
+;; ----------------------------------------
+;; -- Address methods
+
+(defmethod address-account ((client client) dogecoin-address)
+  (http-post client "getaccount" dogecoin-address))
 
 (defmethod account-address ((client client) account)
   "Get the current dogecoin address for receiving payments to ACCOUNT.
