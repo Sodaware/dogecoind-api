@@ -127,6 +127,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Check if server is currently generating hashes."
   (http-post client "getgenerate"))
 
+(defmethod hashes-per-second ((client client))
+  "Get hashes-per-second performance during generation"
+  (http-post client "hashespersecond"))
+
 (defmethod peer-info ((client client))
   "Get data about each connected node."
   (http-post client "getpeerinfo"))

@@ -26,6 +26,7 @@
            #:create-multisig-address
            #:encrypt-wallet
            #:generatep
+           #:hashes-per-second
            #:lock-wallet
            #:server-balance
            #:unlock-wallet
