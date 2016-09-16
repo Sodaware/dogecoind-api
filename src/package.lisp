@@ -17,6 +17,7 @@
            #:authorizedp
 
            ;; RPC Methods
+           #:accounts
            #:account-address
            #:account-balance
            #:add-multisig-address

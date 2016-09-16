@@ -50,7 +50,13 @@
 
 
 ;; ----------------------------------------
-;; -- RPC methods
+;; -- Account methods
+
+(defmethod accounts ((client client))
+  "Get a list of account names and their balances"
+  (http-post client "listaccounts"))
+
+
 
 (defmethod account-address ((client client) account)
   "Get the current dogecoin address for receiving payments to ACCOUNT.
