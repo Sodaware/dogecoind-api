@@ -25,6 +25,7 @@
            #:change-wallet-passphrase
            #:create-multisig-address
            #:encrypt-wallet
+           #:generatep
            #:lock-wallet
            #:server-balance
            #:unlock-wallet

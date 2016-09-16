@@ -123,6 +123,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Get the proof-of-work difficulty as a multiple of the minimum difficulty."
   (http-post client "getdifficulty"))
 
+(defmethod generatep ((client client))
+  "Check if server is currently generating hashes."
+  (http-post client "getgenerate"))
+
 (defmethod peer-info ((client client))
   "Get data about each connected node."
   (http-post client "getpeerinfo"))
