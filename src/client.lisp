@@ -131,6 +131,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Get hashes-per-second performance during generation"
   (http-post client "hashespersecond"))
 
+(defmethod mining-info ((client client))
+  "Get mining-related information from the server."
+  (http-post client "getmininginfo"))
+
 (defmethod peer-info ((client client))
   "Get data about each connected node."
   (http-post client "getpeerinfo"))
