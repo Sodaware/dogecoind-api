@@ -109,6 +109,14 @@ If ACCOUNT is specified, the address will be assigned to the account."
              :optional minimum-confirmations watch-only-p))
 
 ;; ----------------------------------------
+;; -- Transaction functions
+
+(defmethod transaction ((client client) transaction-id)
+  "Get information about transaction TRANSACTION-ID."
+  (http-post client "gettransaction" transaction-id))
+
+
+;; ----------------------------------------
 ;; -- Server functions
 
 (defmethod block-count ((client client))

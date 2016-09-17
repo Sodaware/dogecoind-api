@@ -31,6 +31,7 @@
            #:lock-wallet
            #:mining-info
            #:server-balance
+           #:transaction
            #:unlock-wallet
 
            ;; Error Constants
