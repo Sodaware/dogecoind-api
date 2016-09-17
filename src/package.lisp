@@ -21,19 +21,28 @@
            #:account-address
            #:account-balance
            #:add-multisig-address
+           #:address-account
+           #:address-mine-p
            #:backup-wallet
+           #:block-count
            #:change-wallet-passphrase
+           #:connection-count
            #:create-multisig-address
+           #:difficulty
            #:encrypt-wallet
            #:generatep
            #:hashes-per-second
            #:info
            #:lock-wallet
            #:mining-info
+           #:peer-info
            #:received-by-address
            #:server-balance
+           #:stop-server
            #:transaction
            #:unlock-wallet
+           #:valid-address-p
+           #:validate-address
 
            ;; Error Constants
            #:+rpc-invalid-request+
