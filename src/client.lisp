@@ -61,6 +61,7 @@
 ;; -- Address methods
 
 (defmethod address-account ((client client) dogecoin-address)
+  "Get the account for DOGECOIN-ADDRESS."
   (http-post client "getaccount" dogecoin-address))
 
 (defmethod account-address ((client client) account)
@@ -107,6 +108,15 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Get the balance for ACCOUNT-NAME."
   (http-post client "getbalance" account-name
              :optional minimum-confirmations watch-only-p))
+
+
+;; ----------------------------------------
+;; -- Receive stats
+
+(defmethod received-by-address ((client client) &optional (dogecoin-address "") (minimum-confirmations 1))
+  "Returns the total amount received by DOGECOIN-ADDRESS in transactions with at least MINIMUM-CONFIRMATIONS confirmations."
+  (http-post client "getreceivedbyaddress" :optional dogecoin-address minimum-confirmations))
+
 
 ;; ----------------------------------------
 ;; -- Transaction functions

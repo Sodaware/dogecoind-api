@@ -30,6 +30,7 @@
            #:info
            #:lock-wallet
            #:mining-info
+           #:received-by-address
            #:server-balance
            #:transaction
            #:unlock-wallet
