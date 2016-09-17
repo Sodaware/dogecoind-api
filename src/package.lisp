@@ -27,6 +27,7 @@
            #:encrypt-wallet
            #:generatep
            #:hashes-per-second
+           #:info
            #:lock-wallet
            #:mining-info
            #:server-balance
