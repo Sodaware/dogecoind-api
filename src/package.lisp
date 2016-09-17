@@ -28,6 +28,7 @@
            #:generatep
            #:hashes-per-second
            #:lock-wallet
+           #:mining-info
            #:server-balance
            #:unlock-wallet
 
