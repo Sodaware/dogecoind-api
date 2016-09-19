@@ -27,8 +27,8 @@
 (subtest ":authorize"
   (let ((client (make-client)))
     (dogecoind-api:authorize client "username" "password")
-    (is (dogecoind-api::client-username client) "username" "Sets the username")
-    (is (dogecoind-api::client-password client) "password" "Sets the password")))
+    (is (dogecoind-api::client-username client) "username" "Sets the rpc username")
+    (is (dogecoind-api::client-password client) "password" "Sets the rpc password")))
 
 (subtest ":authorizedp"
   (let ((client (make-client)))
