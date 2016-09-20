@@ -38,6 +38,7 @@
            #:peer-info
            #:received-by-address
            #:server-balance
+           #:set-transaction-fee
            #:stop-server
            #:transaction
            #:unlock-wallet

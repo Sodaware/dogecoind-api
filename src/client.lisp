@@ -161,6 +161,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Get data about each connected node."
   (http-post client "getpeerinfo"))
 
+(defmethod set-transaction-fee ((client client) transaction-fee)
+  "Sets the transaction fee per kilobyte paid by transactions created by this wallet."
+  (http-post client "settxfee" transaction-fee))
+
 (defmethod stop-server ((client client))
   "Stop the dogecoind server."
   (http-post client "stop"))

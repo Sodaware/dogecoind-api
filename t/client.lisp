@@ -11,7 +11,7 @@
 
 (defvar *basic-client* (make-client))
 
-(plan 9)
+(plan 11)
 
 
 ;; ----------------------------------------
@@ -93,5 +93,16 @@
     (:payload ("testaccount" 1) :fixture "getbalance-testaccount")
     (is (dogecoind-api:account-balance *basic-client* "testaccount") 321.12347
         "Gets the balance for the account")))
+
+
+;; ----------------------------------------
+;; -- Server functions
+
+(subtest ":set-transaction-fee"
+  (with-mocked-payload "settxfee"
+    (:payload (1.23456))
+    (ok (dogecoind-api:set-transaction-fee *basic-client* 1.23456)
+        "Sets the transaction fee")))
+
 
 (finalize)
