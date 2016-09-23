@@ -168,6 +168,10 @@ addresses will always show 0."
   "Get data about each connected node."
   (http-post client "getpeerinfo"))
 
+(defmethod refill-keypool ((client client))
+  "Fills the keypool. Requires a wallet passphrase to be set."
+  (http-post client "keypoolrefill"))
+
 (defmethod set-transaction-fee ((client client) transaction-fee)
   "Sets the transaction fee per kilobyte paid by transactions created by this wallet."
   (http-post client "settxfee" transaction-fee))
