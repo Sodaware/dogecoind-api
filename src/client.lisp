@@ -113,9 +113,16 @@ If ACCOUNT is specified, the address will be assigned to the account."
 ;; ----------------------------------------
 ;; -- Receive stats
 
-(defmethod received-by-address ((client client) &optional (dogecoin-address "") (minimum-confirmations 1))
-  "Returns the total amount received by DOGECOIN-ADDRESS in transactions with at least MINIMUM-CONFIRMATIONS confirmations."
-  (http-post client "getreceivedbyaddress" :optional dogecoin-address minimum-confirmations))
+(defmethod received-by-account ((client client) &optional (account "") (minimum-confirmations 1))
+  "Returns the total amount received by ACCOUNT in transactions with at least MINIMUM-CONFIRMATIONS confirmations."
+  (http-post client "getreceivedbyaccount" :optional account minimum-confirmations))
+
+(defmethod received-by-address ((client client) &optional dogecoin-address (minimum-confirmations 1))
+  "Returns the total amount received by DOGECOIN-ADDRESS in transactions with at least MINIMUM-CONFIRMATIONS confirmations.
+This function only counts *receiving* transactions and does not check payments
+that have been made.  Works only for addresses in the local wallet, external
+addresses will always show 0."
+  (http-post client "getreceivedbyaddress" dogecoin-address :optional minimum-confirmations))
 
 
 ;; ----------------------------------------

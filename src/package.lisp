@@ -36,6 +36,7 @@
            #:lock-wallet
            #:mining-info
            #:peer-info
+           #:received-by-account
            #:received-by-address
            #:server-balance
            #:set-transaction-fee
