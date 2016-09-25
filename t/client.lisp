@@ -105,4 +105,16 @@
         "Sets the transaction fee")))
 
 
+;; ----------------------------------------
+;; -- Transaction Functions
+
+(subtest ":transaction"
+  (with-mocked-payload "gettransaction"
+    (:payload ("12345") :fixture "gettransaction-valid")
+    (let ((response (dogecoind-api:transaction *basic-client* "12345")))
+      (is (cdr (assoc :amount response)) 100.0 "Returns correct amount")
+      (is (cdr (assoc :confirmations response)) 20 "Returns correct confirmation count"))))
+
+
+
 (finalize)
