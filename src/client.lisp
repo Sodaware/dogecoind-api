@@ -132,6 +132,9 @@ addresses will always show 0."
   "Get information about transaction TRANSACTION-ID."
   (http-post client "gettransaction" transaction-id))
 
+(defmethod recent-transactions ((client client) &optional (account "") (count 10) (from 0))
+  (http-post client "listtransactions" account count from))
+
 
 ;; ----------------------------------------
 ;; -- Server functions

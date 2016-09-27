@@ -38,6 +38,7 @@
            #:peer-info
            #:received-by-account
            #:received-by-address
+           #:recent-transactions
            #:refill-keypool
            #:server-balance
            #:set-transaction-fee

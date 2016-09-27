@@ -11,7 +11,7 @@
 
 (defvar *basic-client* (make-client))
 
-(plan 11)
+(plan 12)
 
 
 ;; ----------------------------------------
@@ -115,6 +115,20 @@
       (is (cdr (assoc :amount response)) 100.0 "Returns correct amount")
       (is (cdr (assoc :confirmations response)) 20 "Returns correct confirmation count"))))
 
+(subtest ":recent-transactions"
+  (subtest "-> default args"
+    (with-mocked-payload "listtransactions"
+      (:payload ("" 10 0) :fixture "listtransactions-global")
+      (let ((response (dogecoind-api:recent-transactions *basic-client*)))
+        (is-type response 'list "Returns a list of ALL transactions"))))
+  (subtest "-> with account"
+    (with-mocked-payload "listtransactions"
+      (:payload ("my_account" 10 0))
+      (ok (dogecoind-api:recent-transactions *basic-client* "my_account") "Sends the account name to RPC server")))
+  (subtest "-> with pagination"
+    (with-mocked-payload "listtransactions"
+      (:payload ("" 25 10))
+      (ok (dogecoind-api:recent-transactions *basic-client* "" 25 10) "Sends pagination parameters"))))
 
 
 (finalize)
