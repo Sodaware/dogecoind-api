@@ -68,7 +68,7 @@ Some API methods are wrapped with several helper methods where appropriate.
 Add a multisignature address to the wallet that requires *keys* in order to
 spend and return the newly-created dogecoin address.
 
-Each *key* in *keys* is a bitcoin address or hex-encoded public key. 
+Each *key* in *keys* is a dogecoin address or hex-encoded public key. 
 
 If *account* is specified, the address with be assigned to that account.
 
