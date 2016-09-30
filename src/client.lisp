@@ -42,7 +42,7 @@
 ;; -- RPC request macros
 
 (defmacro http-post (client action &rest parameters)
-  "Makes a HTTP POST request to ACTION for CLIENT with PARAMETERS as the payload."
+  "Makes an RPC POST request for CLIENT. Executes ACTION with PARAMETERS."
   `(post-request (client-endpoint ,client)
                  ,action 
                  (create-parameter-list ,@parameters)
