@@ -115,7 +115,7 @@ If ACCOUNT is specified, the address will be assigned to the account."
 
 (defmethod block-hash ((client client) index)
   "Get hash of block at INDEX."
-  (http-post client "getblockhash"))
+  (http-post client "getblockhash" index))
 
 
 ;; ----------------------------------------
