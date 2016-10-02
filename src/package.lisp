@@ -24,6 +24,7 @@
            #:address-account
            #:address-mine-p
            #:backup-wallet
+           #:block
            #:block-count
            #:block-hash
            #:change-wallet-passphrase

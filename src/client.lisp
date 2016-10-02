@@ -117,6 +117,10 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Get hash of block at INDEX."
   (http-post client "getblockhash" index))
 
+(defmethod block ((client client) hash)
+  "Get information about block with HASH."
+  (http-post client "getblock" hash))
+
 
 ;; ----------------------------------------
 ;; -- Receive stats
