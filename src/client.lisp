@@ -111,6 +111,14 @@ If ACCOUNT is specified, the address will be assigned to the account."
 
 
 ;; ----------------------------------------
+;; -- Block functions
+
+(defmethod block-hash ((client client) index)
+  "Get hash of block at INDEX."
+  (http-post client "getblockhash"))
+
+
+;; ----------------------------------------
 ;; -- Receive stats
 
 (defmethod received-by-account ((client client) &optional (account "") (minimum-confirmations 1))

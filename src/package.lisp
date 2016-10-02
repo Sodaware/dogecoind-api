@@ -25,6 +25,7 @@
            #:address-mine-p
            #:backup-wallet
            #:block-count
+           #:block-hash
            #:change-wallet-passphrase
            #:connection-count
            #:create-multisig-address
