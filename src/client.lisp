@@ -117,7 +117,7 @@ If ACCOUNT is specified, the address will be assigned to the account."
   "Get hash of block at INDEX."
   (http-post client "getblockhash" index))
 
-(defmethod block ((client client) hash)
+(defmethod get-block ((client client) hash)
   "Get information about block with HASH."
   (http-post client "getblock" hash))
 
@@ -140,11 +140,11 @@ addresses will always show 0."
 ;; ----------------------------------------
 ;; -- Transaction functions
 
-(defmethod transaction ((client client) transaction-id)
+(defmethod get-transaction ((client client) transaction-id)
   "Get information about transaction TRANSACTION-ID."
   (http-post client "gettransaction" transaction-id))
 
-(defmethod raw-transaction ((client client) transaction-id &optional verbose)
+(defmethod get-raw-transaction ((client client) transaction-id &optional verbose)
   "Get raw transaction data for TRANSACTION-ID."
   (http-post client "getrawtransaction" transaction-id
              :optional verbose))

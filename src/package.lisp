@@ -24,7 +24,7 @@
            #:address-account
            #:address-mine-p
            #:backup-wallet
-           #:block
+           #:get-block
            #:block-count
            #:block-hash
            #:change-wallet-passphrase
@@ -38,7 +38,7 @@
            #:lock-wallet
            #:mining-info
            #:peer-info
-           #:raw-transaction
+           #:get-raw-transaction
            #:received-by-account
            #:received-by-address
            #:recent-transactions
@@ -46,7 +46,7 @@
            #:server-balance
            #:set-transaction-fee
            #:stop-server
-           #:transaction
+           #:get-transaction
            #:unlock-wallet
            #:valid-address-p
            #:validate-address
