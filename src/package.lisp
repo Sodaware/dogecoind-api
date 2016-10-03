@@ -38,6 +38,7 @@
            #:lock-wallet
            #:mining-info
            #:peer-info
+           #:raw-transaction
            #:received-by-account
            #:received-by-address
            #:recent-transactions
