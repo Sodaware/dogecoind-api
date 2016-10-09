@@ -22,6 +22,7 @@
            #:account-balance
            #:add-multisig-address
            #:address-account
+           #:address-groupings
            #:address-mine-p
            #:backup-wallet
            #:get-block

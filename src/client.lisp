@@ -56,6 +56,10 @@
   "Get a list of account names and their balances"
   (http-post client "listaccounts"))
 
+(defmethod address-groupings ((client client))
+  "Get a list of all addresses, balances and account names in the wallet."
+  (http-post client "listaddressgroupings"))
+
 
 ;; ----------------------------------------
 ;; -- Address methods
